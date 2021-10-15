@@ -15,13 +15,11 @@ public class Pawn extends ChessPiece{
         if (!chessBoard.checkPos(toLine) || !chessBoard.checkPos(toColumn)) return false;
         if (this.getColor().equals("White")){
             if (line == 1 && (toLine == line + 1 || toLine == line + 2) && column == toColumn) return true;
-            else if (line != 1 && toLine == line + 1 && column == toColumn) return true;
-            else return false;
+            else return line != 1 && toLine == line + 1 && column == toColumn;
         }
         if (this.getColor().equals("Black")){
             if (line == 6 && (toLine == line - 1 || toLine == line - 2) && column == toColumn) return true;
-            else if (line != 6 && toLine == line - 1 && column == toColumn) return true;
-            else return false;
+            else return line != 6 && toLine == line - 1 && column == toColumn;
         }
         return false;
     }
