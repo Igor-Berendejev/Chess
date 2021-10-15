@@ -10,10 +10,8 @@ public class Bishop extends ChessPiece{
 
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
-        if (line == toLine && column == toColumn) return false;
-        if (!chessBoard.checkPos(toLine) || !chessBoard.checkPos(toColumn)) return false;
-        if (Math.abs(line - toLine) == Math.abs(column - toColumn)) return true;
-        return false;
+        if (illegalMove(chessBoard, line, column, toLine, toColumn)) return false;
+        return Math.abs(line - toLine) == Math.abs(column - toColumn);
     }
 
     @Override
