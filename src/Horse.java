@@ -19,7 +19,7 @@ public class Horse extends ChessPiece{
                 {line + 2, column - 1},
                 {line + 2, column + 1}};
         if (line == toLine && column == toColumn) return false;
-        if (toLine > 7 || toLine < 0 || toColumn > 7 || toColumn < 0) return false;
+        if (!chessBoard.checkPos(toLine) || !chessBoard.checkPos(toColumn)) return false;
         for (int[]pos : toPositions){
             if (pos[0] == toLine && pos[1] == toColumn) return true;
         }
