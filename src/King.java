@@ -21,7 +21,7 @@ public class King extends ChessPiece{
                 {line + 1, column + 1}};
         if (illegalMove(chessBoard, line, column, toLine, toColumn)) return false;
         for (int[]pos: toPositions){
-            if (pos[0] == toLine && pos[1] == toColumn) return true;
+            if (pos[0] == toLine && pos[1] == toColumn) {check = false; return true;}
         }
         return false;
     }
@@ -29,5 +29,16 @@ public class King extends ChessPiece{
     @Override
     public String getSymbol() {
         return "K";
+    }
+
+    public boolean isUnderAttack(ChessBoard board, int line, int column){
+        for (int i = 0; i < 7; i++){
+            for (int j = 0; j < 7; j++){
+                if (board.board[i][j] != null && !board.board[i][j].getColor().equals(this.getColor())){
+                    if (board.board[i][j].canMoveToPosition(board, i, j, line, column)) return true;
+                }
+            }
+        }
+        return false;
     }
 }

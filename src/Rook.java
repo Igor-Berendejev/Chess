@@ -12,7 +12,8 @@ public class Rook extends ChessPiece{
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         if (illegalMove(chessBoard, line, column, toLine, toColumn)) return false;
-        return column == toColumn || line == toLine;
+        if (column == toColumn || line == toLine) {check = false; return true;}
+        return false;
     }
 
     @Override
