@@ -1,4 +1,4 @@
-public class Queen extends ChessPiece{
+public class Queen extends ChessPiece implements MovableDiagonally, MovableVertically, MovableHorizontally{
     public Queen(String color){
         super(color);
     }
@@ -11,8 +11,10 @@ public class Queen extends ChessPiece{
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         if (illegalMove(chessBoard, line, column, toLine, toColumn)) return false;
-        if (column == toColumn || line == toLine) return true;
-        return Math.abs(line - toLine) == Math.abs(column - toColumn);
+        if (column == toColumn && this.canMoveVertically(chessBoard, line, column, toLine, toColumn) ||
+                (line == toLine && this.canMoveHorizontally(chessBoard, line, column, toLine, toColumn))) return true;
+        return Math.abs(line - toLine) == Math.abs(column - toColumn) &&
+                this.canMoveDiagonally(chessBoard, line, column, toLine, toColumn);
     }
 
     @Override

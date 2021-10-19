@@ -10,6 +10,7 @@ public abstract class ChessPiece{
     public abstract String getSymbol();
     public static boolean illegalMove(ChessBoard chessBoard, int line, int column, int toLine, int toColumn){
         return (line == toLine && column == toColumn) ||
-                (!chessBoard.checkPos(toLine) || !chessBoard.checkPos(toColumn));
+                (!chessBoard.checkPos(toLine) || !chessBoard.checkPos(toColumn)) ||
+                (chessBoard.board[toLine][toColumn] != null && chessBoard.board[line][column].getColor().equals(chessBoard.board[toLine][toColumn].getColor()));
     }
 }

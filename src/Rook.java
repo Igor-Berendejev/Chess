@@ -1,4 +1,4 @@
-public class Rook extends ChessPiece{
+public class Rook extends ChessPiece implements MovableVertically, MovableHorizontally{
 
     public Rook(String color){
         super(color);
@@ -12,7 +12,11 @@ public class Rook extends ChessPiece{
     @Override
     public boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn) {
         if (illegalMove(chessBoard, line, column, toLine, toColumn)) return false;
-        if (column == toColumn || line == toLine) {check = false; return true;}
+        if ((column == toColumn && this.canMoveVertically(chessBoard, line, column, toLine, toColumn))
+                || (line == toLine && this.canMoveHorizontally(chessBoard, line, column, toLine, toColumn))) {
+            check = false;
+            return true;
+        }
         return false;
     }
 

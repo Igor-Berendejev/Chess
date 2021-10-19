@@ -32,8 +32,8 @@ public class King extends ChessPiece{
     }
 
     public boolean isUnderAttack(ChessBoard board, int line, int column){
-        for (int i = 0; i < 7; i++){
-            for (int j = 0; j < 7; j++){
+        for (int i = 0; i <= 7; i++){
+            for (int j = 0; j <= 7; j++){
                 if (board.board[i][j] != null && !board.board[i][j].getColor().equals(this.getColor())){
                     if (board.board[i][j].canMoveToPosition(board, i, j, line, column)) return true;
                 }
